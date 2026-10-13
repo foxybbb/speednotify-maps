@@ -33,7 +33,7 @@ jobs:
       matrix: ${{ steps.plan.outputs.matrix }}
       ids: ${{ steps.plan.outputs.ids }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: plan
         run: python3 scripts/plan.py "${{ github.event.inputs.regions }}" >> "$GITHUB_OUTPUT"
 
@@ -48,9 +48,9 @@ jobs:
       matrix:
         include: ${{ fromJSON(needs.plan.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -84,7 +84,7 @@ jobs:
             --pbf "${{ runner.temp }}/filtered.osm.pbf" --poly "${{ runner.temp }}/region.poly" \
             --file "${{ matrix.file }}" --source-date "${SOURCE_DATE:-$(date +%F)}" --out dist
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: pack-${{ matrix.id }}
           path: dist/*.zip
@@ -98,9 +98,9 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: pack-*
           merge-multiple: true
