@@ -1,0 +1,533 @@
+{
+ "groups": [
+  {
+   "id": "baltic",
+   "name": "Прибалтика"
+  },
+  {
+   "id": "north",
+   "name": "Северная Европа"
+  },
+  {
+   "id": "west",
+   "name": "Западная Европа"
+  },
+  {
+   "id": "central",
+   "name": "Центральная Европа"
+  },
+  {
+   "id": "south",
+   "name": "Южная Европа"
+  },
+  {
+   "id": "balkans",
+   "name": "Балканы"
+  },
+  {
+   "id": "east",
+   "name": "Восточная Европа"
+  },
+  {
+   "id": "russia",
+   "name": "Россия (европейская часть)"
+  }
+ ],
+ "regions": [
+  {
+   "id": "EE",
+   "country": "EE",
+   "geofabrik": "europe/estonia",
+   "name": "Эстония",
+   "name_en": "Estonia",
+   "group": "baltic",
+   "file": "EE-estonia.zip"
+  },
+  {
+   "id": "LV",
+   "country": "LV",
+   "geofabrik": "europe/latvia",
+   "name": "Латвия",
+   "name_en": "Latvia",
+   "group": "baltic",
+   "file": "LV-latvia.zip"
+  },
+  {
+   "id": "LT",
+   "country": "LT",
+   "geofabrik": "europe/lithuania",
+   "name": "Литва",
+   "name_en": "Lithuania",
+   "group": "baltic",
+   "file": "LT-lithuania.zip"
+  },
+  {
+   "id": "DK",
+   "country": "DK",
+   "geofabrik": "europe/denmark",
+   "name": "Дания",
+   "name_en": "Denmark",
+   "group": "north",
+   "file": "DK-denmark.zip"
+  },
+  {
+   "id": "FI",
+   "country": "FI",
+   "geofabrik": "europe/finland",
+   "name": "Финляндия",
+   "name_en": "Finland",
+   "group": "north",
+   "file": "FI-finland.zip"
+  },
+  {
+   "id": "FO",
+   "country": "FO",
+   "geofabrik": "europe/faroe-islands",
+   "name": "Фарерские острова",
+   "name_en": "Faroe Islands",
+   "group": "north",
+   "file": "FO-faroe-islands.zip"
+  },
+  {
+   "id": "IS",
+   "country": "IS",
+   "geofabrik": "europe/iceland",
+   "name": "Исландия",
+   "name_en": "Iceland",
+   "group": "north",
+   "file": "IS-iceland.zip"
+  },
+  {
+   "id": "NO",
+   "country": "NO",
+   "geofabrik": "europe/norway",
+   "name": "Норвегия",
+   "name_en": "Norway",
+   "group": "north",
+   "file": "NO-norway.zip"
+  },
+  {
+   "id": "SE",
+   "country": "SE",
+   "geofabrik": "europe/sweden",
+   "name": "Швеция",
+   "name_en": "Sweden",
+   "group": "north",
+   "file": "SE-sweden.zip"
+  },
+  {
+   "id": "BE",
+   "country": "BE",
+   "geofabrik": "europe/belgium",
+   "name": "Бельгия",
+   "name_en": "Belgium",
+   "group": "west",
+   "file": "BE-belgium.zip"
+  },
+  {
+   "id": "FR",
+   "country": "FR",
+   "geofabrik": "europe/france",
+   "name": "Франция",
+   "name_en": "France",
+   "group": "west",
+   "file": "FR-france.zip"
+  },
+  {
+   "id": "GB",
+   "country": "GB",
+   "geofabrik": "europe/united-kingdom",
+   "name": "Великобритания",
+   "name_en": "United Kingdom",
+   "group": "west",
+   "file": "GB-united-kingdom.zip"
+  },
+  {
+   "id": "GG",
+   "country": "GG",
+   "geofabrik": "europe/guernsey-jersey",
+   "name": "Гернси и Джерси",
+   "name_en": "Guernsey and Jersey",
+   "group": "west",
+   "file": "GG-guernsey-jersey.zip"
+  },
+  {
+   "id": "IE",
+   "country": "IE",
+   "geofabrik": "europe/ireland-and-northern-ireland",
+   "name": "Ирландия",
+   "name_en": "Ireland",
+   "group": "west",
+   "file": "IE-ireland-and-northern-ireland.zip"
+  },
+  {
+   "id": "IM",
+   "country": "IM",
+   "geofabrik": "europe/isle-of-man",
+   "name": "Остров Мэн",
+   "name_en": "Isle of Man",
+   "group": "west",
+   "file": "IM-isle-of-man.zip"
+  },
+  {
+   "id": "LU",
+   "country": "LU",
+   "geofabrik": "europe/luxembourg",
+   "name": "Люксембург",
+   "name_en": "Luxembourg",
+   "group": "west",
+   "file": "LU-luxembourg.zip"
+  },
+  {
+   "id": "MC",
+   "country": "MC",
+   "geofabrik": "europe/monaco",
+   "name": "Монако",
+   "name_en": "Monaco",
+   "group": "west",
+   "file": "MC-monaco.zip"
+  },
+  {
+   "id": "NL",
+   "country": "NL",
+   "geofabrik": "europe/netherlands",
+   "name": "Нидерланды",
+   "name_en": "Netherlands",
+   "group": "west",
+   "file": "NL-netherlands.zip"
+  },
+  {
+   "id": "AT",
+   "country": "AT",
+   "geofabrik": "europe/austria",
+   "name": "Австрия",
+   "name_en": "Austria",
+   "group": "central",
+   "file": "AT-austria.zip"
+  },
+  {
+   "id": "CH",
+   "country": "CH",
+   "geofabrik": "europe/switzerland",
+   "name": "Швейцария",
+   "name_en": "Switzerland",
+   "group": "central",
+   "file": "CH-switzerland.zip"
+  },
+  {
+   "id": "CZ",
+   "country": "CZ",
+   "geofabrik": "europe/czech-republic",
+   "name": "Чехия",
+   "name_en": "Czechia",
+   "group": "central",
+   "file": "CZ-czech-republic.zip"
+  },
+  {
+   "id": "DE",
+   "country": "DE",
+   "geofabrik": "europe/germany",
+   "name": "Германия",
+   "name_en": "Germany",
+   "group": "central",
+   "file": "DE-germany.zip"
+  },
+  {
+   "id": "HU",
+   "country": "HU",
+   "geofabrik": "europe/hungary",
+   "name": "Венгрия",
+   "name_en": "Hungary",
+   "group": "central",
+   "file": "HU-hungary.zip"
+  },
+  {
+   "id": "LI",
+   "country": "LI",
+   "geofabrik": "europe/liechtenstein",
+   "name": "Лихтенштейн",
+   "name_en": "Liechtenstein",
+   "group": "central",
+   "file": "LI-liechtenstein.zip"
+  },
+  {
+   "id": "PL",
+   "country": "PL",
+   "geofabrik": "europe/poland",
+   "name": "Польша",
+   "name_en": "Poland",
+   "group": "central",
+   "file": "PL-poland.zip"
+  },
+  {
+   "id": "SK",
+   "country": "SK",
+   "geofabrik": "europe/slovakia",
+   "name": "Словакия",
+   "name_en": "Slovakia",
+   "group": "central",
+   "file": "SK-slovakia.zip"
+  },
+  {
+   "id": "SI",
+   "country": "SI",
+   "geofabrik": "europe/slovenia",
+   "name": "Словения",
+   "name_en": "Slovenia",
+   "group": "central",
+   "file": "SI-slovenia.zip"
+  },
+  {
+   "id": "AD",
+   "country": "AD",
+   "geofabrik": "europe/andorra",
+   "name": "Андорра",
+   "name_en": "Andorra",
+   "group": "south",
+   "file": "AD-andorra.zip"
+  },
+  {
+   "id": "CY",
+   "country": "CY",
+   "geofabrik": "europe/cyprus",
+   "name": "Кипр",
+   "name_en": "Cyprus",
+   "group": "south",
+   "file": "CY-cyprus.zip"
+  },
+  {
+   "id": "ES",
+   "country": "ES",
+   "geofabrik": "europe/spain",
+   "name": "Испания",
+   "name_en": "Spain",
+   "group": "south",
+   "file": "ES-spain.zip"
+  },
+  {
+   "id": "GR",
+   "country": "GR",
+   "geofabrik": "europe/greece",
+   "name": "Греция",
+   "name_en": "Greece",
+   "group": "south",
+   "file": "GR-greece.zip"
+  },
+  {
+   "id": "IT",
+   "country": "IT",
+   "geofabrik": "europe/italy",
+   "name": "Италия",
+   "name_en": "Italy",
+   "group": "south",
+   "file": "IT-italy.zip"
+  },
+  {
+   "id": "MT",
+   "country": "MT",
+   "geofabrik": "europe/malta",
+   "name": "Мальта",
+   "name_en": "Malta",
+   "group": "south",
+   "file": "MT-malta.zip"
+  },
+  {
+   "id": "PT",
+   "country": "PT",
+   "geofabrik": "europe/portugal",
+   "name": "Португалия",
+   "name_en": "Portugal",
+   "group": "south",
+   "file": "PT-portugal.zip"
+  },
+  {
+   "id": "PT-AZ",
+   "country": "PT",
+   "geofabrik": "europe/azores",
+   "name": "Азорские острова",
+   "name_en": "Azores",
+   "group": "south",
+   "file": "PT-AZ-azores.zip"
+  },
+  {
+   "id": "TR",
+   "country": "TR",
+   "geofabrik": "europe/turkey",
+   "name": "Турция",
+   "name_en": "Turkey",
+   "group": "south",
+   "file": "TR-turkey.zip"
+  },
+  {
+   "id": "AL",
+   "country": "AL",
+   "geofabrik": "europe/albania",
+   "name": "Албания",
+   "name_en": "Albania",
+   "group": "balkans",
+   "file": "AL-albania.zip"
+  },
+  {
+   "id": "BA",
+   "country": "BA",
+   "geofabrik": "europe/bosnia-herzegovina",
+   "name": "Босния и Герцеговина",
+   "name_en": "Bosnia and Herzegovina",
+   "group": "balkans",
+   "file": "BA-bosnia-herzegovina.zip"
+  },
+  {
+   "id": "BG",
+   "country": "BG",
+   "geofabrik": "europe/bulgaria",
+   "name": "Болгария",
+   "name_en": "Bulgaria",
+   "group": "balkans",
+   "file": "BG-bulgaria.zip"
+  },
+  {
+   "id": "HR",
+   "country": "HR",
+   "geofabrik": "europe/croatia",
+   "name": "Хорватия",
+   "name_en": "Croatia",
+   "group": "balkans",
+   "file": "HR-croatia.zip"
+  },
+  {
+   "id": "ME",
+   "country": "ME",
+   "geofabrik": "europe/montenegro",
+   "name": "Черногория",
+   "name_en": "Montenegro",
+   "group": "balkans",
+   "file": "ME-montenegro.zip"
+  },
+  {
+   "id": "MK",
+   "country": "MK",
+   "geofabrik": "europe/macedonia",
+   "name": "Северная Македония",
+   "name_en": "North Macedonia",
+   "group": "balkans",
+   "file": "MK-macedonia.zip"
+  },
+  {
+   "id": "RO",
+   "country": "RO",
+   "geofabrik": "europe/romania",
+   "name": "Румыния",
+   "name_en": "Romania",
+   "group": "balkans",
+   "file": "RO-romania.zip"
+  },
+  {
+   "id": "RS",
+   "country": "RS",
+   "geofabrik": "europe/serbia",
+   "name": "Сербия",
+   "name_en": "Serbia",
+   "group": "balkans",
+   "file": "RS-serbia.zip"
+  },
+  {
+   "id": "XK",
+   "country": "XK",
+   "geofabrik": "europe/kosovo",
+   "name": "Косово",
+   "name_en": "Kosovo",
+   "group": "balkans",
+   "file": "XK-kosovo.zip"
+  },
+  {
+   "id": "BY",
+   "country": "BY",
+   "geofabrik": "europe/belarus",
+   "name": "Беларусь",
+   "name_en": "Belarus",
+   "group": "east",
+   "file": "BY-belarus.zip"
+  },
+  {
+   "id": "GE",
+   "country": "GE",
+   "geofabrik": "europe/georgia",
+   "name": "Грузия",
+   "name_en": "Georgia",
+   "group": "east",
+   "file": "GE-georgia.zip"
+  },
+  {
+   "id": "MD",
+   "country": "MD",
+   "geofabrik": "europe/moldova",
+   "name": "Молдова",
+   "name_en": "Moldova",
+   "group": "east",
+   "file": "MD-moldova.zip"
+  },
+  {
+   "id": "UA",
+   "country": "UA",
+   "geofabrik": "europe/ukraine",
+   "name": "Украина",
+   "name_en": "Ukraine",
+   "group": "east",
+   "file": "UA-ukraine.zip"
+  },
+  {
+   "id": "RU-CFD",
+   "country": "RU",
+   "geofabrik": "russia/central-fed-district",
+   "name": "Центральный ФО",
+   "name_en": "Russia: Central FD",
+   "group": "russia",
+   "file": "RU-CFD-central-fed-district.zip"
+  },
+  {
+   "id": "RU-NWFD",
+   "country": "RU",
+   "geofabrik": "russia/northwestern-fed-district",
+   "name": "Северо-Западный ФО",
+   "name_en": "Russia: Northwestern FD",
+   "group": "russia",
+   "file": "RU-NWFD-northwestern-fed-district.zip"
+  },
+  {
+   "id": "RU-SFD",
+   "country": "RU",
+   "geofabrik": "russia/south-fed-district",
+   "name": "Южный ФО",
+   "name_en": "Russia: Southern FD",
+   "group": "russia",
+   "file": "RU-SFD-south-fed-district.zip"
+  },
+  {
+   "id": "RU-VFD",
+   "country": "RU",
+   "geofabrik": "russia/volga-fed-district",
+   "name": "Приволжский ФО",
+   "name_en": "Russia: Volga FD",
+   "group": "russia",
+   "file": "RU-VFD-volga-fed-district.zip"
+  },
+  {
+   "id": "RU-NCFD",
+   "country": "RU",
+   "geofabrik": "russia/north-caucasus-fed-district",
+   "name": "Северо-Кавказский ФО",
+   "name_en": "Russia: North Caucasian FD",
+   "group": "russia",
+   "file": "RU-NCFD-north-caucasus-fed-district.zip"
+  },
+  {
+   "id": "RU-KGD",
+   "country": "RU",
+   "geofabrik": "russia/kaliningrad",
+   "name": "Калининградская область",
+   "name_en": "Russia: Kaliningrad",
+   "group": "russia",
+   "file": "RU-KGD-kaliningrad.zip"
+  }
+ ]
+}

@@ -1,0 +1,144 @@
+name: Build map packs
+
+on:
+  schedule:
+    # Monthly, on the 3rd at 02:00 UTC.
+    - cron: "0 2 3 * *"
+  workflow_dispatch:
+    inputs:
+      regions:
+        description: "Comma-separated region ids from regions.json (empty = all)"
+        required: false
+        default: ""
+      publish:
+        description: "Publish a release when done"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-maps
+  cancel-in-progress: false
+
+env:
+  HIGHWAYS: motorway,motorway_link,trunk,trunk_link,primary,primary_link,secondary,secondary_link,tertiary,tertiary_link,unclassified,residential,living_street,road
+  PLACES: city,town,village,hamlet,suburb
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      ids: ${{ steps.plan.outputs.ids }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        run: python3 scripts/plan.py "${{ github.event.inputs.regions }}" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: plan
+    name: ${{ matrix.id }} ${{ matrix.name_en }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install osmium
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq osmium-tool
+          pip install --quiet "osmium>=4,<5"
+
+      - name: Download extract
+        working-directory: ${{ runner.temp }}
+        run: |
+          base="https://download.geofabrik.de/${{ matrix.geofabrik }}"
+          curl -fsSL --retry 5 --retry-delay 30 -o region.poly "$base.poly"
+          curl -fSL --retry 5 --retry-delay 30 -o region.osm.pbf "$base-latest.osm.pbf"
+          ls -lh region.osm.pbf
+          echo "SOURCE_DATE=$(osmium fileinfo -g header.option.osmosis_replication_timestamp region.osm.pbf | cut -c1-10)" >> "$GITHUB_ENV"
+
+      - name: Keep only roads and places
+        working-directory: ${{ runner.temp }}
+        run: |
+          osmium tags-filter region.osm.pbf "w/highway=$HIGHWAYS" "n/place=$PLACES" -o filtered.osm.pbf --overwrite
+          rm region.osm.pbf
+          ls -lh filtered.osm.pbf
+
+      - name: Build pack
+        run: |
+          python3 scripts/build_pack.py \
+            --id "${{ matrix.id }}" --country "${{ matrix.country }}" \
+            --name "${{ matrix.name }}" --name-en "${{ matrix.name_en }}" --group "${{ matrix.group_name }}" \
+            --pbf "${{ runner.temp }}/filtered.osm.pbf" --poly "${{ runner.temp }}/region.poly" \
+            --file "${{ matrix.file }}" --source-date "${SOURCE_DATE:-$(date +%F)}" --out dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pack-${{ matrix.id }}
+          path: dist/*.zip
+          retention-days: 5
+          compression-level: 0
+
+  publish:
+    needs: [plan, build]
+    if: ${{ always() && needs.plan.result == 'success' && (github.event_name == 'schedule' || github.event.inputs.publish == 'true') }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pack-*
+          merge-multiple: true
+          path: packs
+
+      - name: Keep previous packs for regions not rebuilt
+        run: |
+          mkdir -p packs
+          built=""; failed=""; carried=""
+          for row in $(jq -r '.regions[] | "\(.id)|\(.file)"' regions.json); do
+            id="${row%%|*}"; file="${row#*|}"
+            if [ -f "packs/$file" ]; then built="$built,$id"; continue; fi
+            if [[ ",${{ needs.plan.outputs.ids }}," == *",$id,"* ]]; then failed="$failed,$id"; fi
+            if gh release download --repo "$GITHUB_REPOSITORY" --pattern "$file" --dir packs 2>/dev/null; then
+              carried="$carried,$id"
+            fi
+          done
+          echo "FAILED=${failed#,}" >> "$GITHUB_ENV"
+          echo "CARRIED=${carried#,}" >> "$GITHUB_ENV"
+          echo "built: ${built#,}"; echo "failed: ${failed#,}"; echo "carried over: ${carried#,}"
+          ls packs | wc -l
+          [ -n "$(ls packs/*.zip 2>/dev/null)" ] || { echo "No packs to publish"; exit 1; }
+
+      - name: Catalog and release notes
+        run: python3 scripts/make_catalog.py packs --notes notes.md --failed "$FAILED" --carried "$CARRIED"
+
+      - name: Publish release
+        run: |
+          tag="maps-$(date -u +%F)"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then tag="$tag-${GITHUB_RUN_NUMBER}"; fi
+          gh release create "$tag" packs/*.zip packs/catalog.json \
+            --repo "$GITHUB_REPOSITORY" --title "Map packs $(date -u +%F)" --notes-file notes.md --latest
+
+      - name: Remove old releases (keep 3)
+        run: |
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 100 --json tagName,createdAt \
+            --jq 'map(select(.tagName | startswith("maps-"))) | sort_by(.createdAt) | reverse | .[3:] | .[].tagName' |
+          while read -r tag; do
+            echo "Deleting $tag"
+            gh release delete "$tag" --repo "$GITHUB_REPOSITORY" --yes --cleanup-tag
+          done
