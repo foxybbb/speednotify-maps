@@ -81,7 +81,7 @@ A zip archive:
 
 ```json
 {"format": 1, "packs": [{"id": "EE", "country": "EE", "name": "Эстония", "name_en": "Estonia",
-  "group": "Прибалтика", "file": "EE-estonia.zip", "size": 7605137,
+  "group": "Прибалтика", "group_id": "baltic", "file": "EE-estonia.zip", "size": 7605137,
   "created": 1760345000000, "sha256": "…"}]}
 ```
 
