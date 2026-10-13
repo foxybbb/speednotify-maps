@@ -49,6 +49,7 @@ def main():
             "name": region.get("name", m.get("name", pid)),
             "name_en": region.get("name_en", m.get("name_en", "")),
             "group": groups.get(region.get("group"), m.get("group", "")),
+            "group_id": region.get("group", ""),
             "file": name,
             "size": os.path.getsize(path),
             "created": m["created"],
